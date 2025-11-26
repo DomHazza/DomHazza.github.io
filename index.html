@@ -161,6 +161,23 @@
             margin-top: 0.5rem;
         }
 
+        .cv-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .cv-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
         @media (max-width: 600px) {
             header h1 {
                 font-size: 1.8rem;
@@ -179,8 +196,8 @@
 </head>
 <body>
     <header>
-        <h1>DomHazza</h1>
-        <p>Developer | Creator | Problem Solver</p>
+        <h1>Dominic Harrington</h1>
+        <p>Machine Learning | Fluid dynamics</p>
     </header>
 
     <nav>
@@ -194,14 +211,11 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Hello! I'm DomHazza, a passionate developer who loves building creative solutions and exploring new technologies. I enjoy working on various projects that challenge me to learn and grow.</p>
-                    <p class="mt-1">Whether it's web development, software engineering, or any other technical endeavor, I'm always excited to dive in and create something meaningful.</p>
-                    <div class="skills-list">
-                        <span class="skill-tag">Programming</span>
-                        <span class="skill-tag">Web Development</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Creativity</span>
-                    </div>
+                    <p>I am a final year MEng engineering Master's student at the University of Cambridge. I have spent 2 summers building machine learning models for the Williams F1 team aerodynamics department, 1 summer at the UK Atomic Energy Authority building an AI driven experiment design suite, and been a summer exchange student at Nagoya University where I presented research on using AI to design nuclear fusion reactors to the chairman and directors of Tokai Tokyo holdings.</p>
+                    <p class="mt-1">Second paragraph 2</p>
+                    <p class="mt-1">
+                        <a href="cv.pdf" class="cv-button">Download CV</a>
+                    </p>
                 </div>
             </div>
         </section>
@@ -226,7 +240,7 @@
 
         <section id="contact">
             <h2>Get In Touch</h2>
-            <p>Feel free to reach out if you'd like to connect or collaborate on projects!</p>
+            <p>My email address is domfxh@gmail.com.</p>
             <p class="mt-1">
                 <a href="https://github.com/DomHazza" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
             </p>
