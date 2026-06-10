@@ -1,8 +1,8 @@
 ---
 import { SITE_TITLE } from '../consts';
 
-const nav = [
-  { href: '/cv/', label: 'CV' },
+const nav: { href: string; label: string; newTab?: boolean }[] = [
+  { href: '/cv.pdf', label: 'CV', newTab: true },
   { href: '/projects/', label: 'Projects' },
   { href: '/blog/', label: 'Blog' },
   { href: '/about/', label: 'About' },
@@ -24,10 +24,11 @@ const isActive = (href: string) => {
     </a>
     <nav aria-label="Main navigation" class="flex gap-5 text-sm">
       {
-        nav.map(({ href, label }) => (
+        nav.map(({ href, label, newTab }) => (
           <a
             href={href}
             aria-current={isActive(href) ? 'page' : undefined}
+            {...(newTab ? { target: '_blank', rel: 'noopener' } : {})}
             class:list={[
               'transition-colors hover:text-accent',
               isActive(href)

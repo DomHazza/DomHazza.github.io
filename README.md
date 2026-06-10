@@ -61,8 +61,8 @@ import VideoEmbed from '../../components/VideoEmbed.astro';
 
 ## Updating the CV
 
-- Replace `public/cv.pdf` to update the downloadable PDF.
-- Edit the structured content (experience, education, skills) in `src/pages/cv.astro`.
+Replace `public/cv.pdf`. The header and home-page CV links point straight at the PDF, and the
+old `/cv` URL redirects to it.
 
 ## Site-wide settings
 
@@ -74,7 +74,9 @@ import VideoEmbed from '../../components/VideoEmbed.astro';
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the site with the
 official Astro action and deploys it to GitHub Pages. The repository's Pages setting must be
-**Settings → Pages → Source: GitHub Actions** (one-time setup).
+**Settings → Pages → Source: GitHub Actions** (one-time setup). Until that is set, GitHub also
+runs a legacy "pages build and deployment" workflow on every push — it fails harmlessly (the
+Actions deploy still goes live) but shows a red ✗ in the Actions tab and sends failure emails.
 
 ## Maintenance notes
 
