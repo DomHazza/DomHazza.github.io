@@ -1,0 +1,21 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+}
+
+const { project } = Astro.props;
+const { title, description, date, tags } = project.data;
+---
+
+<article class="py-7">
+  <div class="flex items-baseline justify-between gap-4">
+    <h3 class="font-display text-xl font-semibold leading-snug">
+      <a href={`/projects/${project.id}/`} class="transition-colors hover:text-accent">{title}</a>
+    </h3>
+    <span class="shrink-0 text-sm text-muted">{date.getFullYear()}</span>
+  </div>
+  <p class="mt-2 text-[0.9375rem] leading-relaxed text-muted">{description}</p>
+  {tags.length > 0 && <p class="mt-3 text-[0.8125rem] tracking-wide text-muted/75">{tags.join(' · ')}</p>}
+</article>

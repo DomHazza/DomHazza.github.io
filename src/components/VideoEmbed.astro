@@ -1,0 +1,56 @@
+---
+interface Props {
+  url: string;
+  title?: string;
+}
+
+const { url, title = 'Embedded video' } = Astro.props;
+
+function embedSrc(raw: string): string | null {
+  let parsed: URL;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    return null;
+  }
+  const host = parsed.hostname.replace(/^www\./, '');
+
+  if (host === 'youtu.be') {
+    return `https://www.youtube-nocookie.com/embed/${parsed.pathname.slice(1)}`;
+  }
+  if (host === 'youtube.com' || host === 'm.youtube.com' || host === 'youtube-nocookie.com') {
+    if (parsed.pathname.startsWith('/embed/')) return `https://www.youtube-nocookie.com${parsed.pathname}`;
+    if (parsed.pathname.startsWith('/shorts/')) {
+      return `https://www.youtube-nocookie.com/embed/${parsed.pathname.split('/')[2]}`;
+    }
+    const id = parsed.searchParams.get('v');
+    if (id) return `https://www.youtube-nocookie.com/embed/${id}`;
+  }
+  if (host === 'vimeo.com') {
+    const id = parsed.pathname.split('/').filter(Boolean)[0];
+    if (id) return `https://player.vimeo.com/video/${id}`;
+  }
+  if (host === 'player.vimeo.com') return raw;
+
+  return null;
+}
+
+const src = embedSrc(url);
+---
+
+{
+  src ? (
+    <iframe
+      class="aspect-video w-full rounded-[4px] border border-rule"
+      src={src}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    />
+  ) : (
+    <p>
+      Watch: <a href={url}>{title}</a>
+    </p>
+  )
+}

@@ -1,0 +1,31 @@
+---
+import { LINKS, SITE_TITLE } from '../consts';
+
+const year = new Date().getFullYear();
+const links = [
+  { href: LINKS.github, label: 'GitHub' },
+  { href: LINKS.linkedin, label: 'LinkedIn' },
+  { href: `mailto:${LINKS.email}`, label: 'Email' },
+].filter(({ href }) => href && href !== 'mailto:');
+---
+
+<footer class="border-t border-rule">
+  <div
+    class="mx-auto flex max-w-[680px] flex-wrap items-baseline justify-between gap-x-6 gap-y-2 px-6 py-8 text-sm text-muted"
+  >
+    <p>© {year} {SITE_TITLE}</p>
+    <nav aria-label="External links" class="flex gap-5">
+      {
+        links.map(({ href, label }) => (
+          <a
+            href={href}
+            class="transition-colors hover:text-accent"
+            {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>

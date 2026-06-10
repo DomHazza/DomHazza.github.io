@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { LINKS } from '../consts';
+import { getProjects } from '../utils/content';
+
+const projects = await getProjects();
+const featured = [...projects]
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured))
+  .slice(0, 2);
+
+const external = [
+  { href: LINKS.github, label: 'GitHub ↗' },
+  ...(LINKS.linkedin ? [{ href: LINKS.linkedin, label: 'LinkedIn ↗' }] : []),
+  { href: `mailto:${LINKS.email}`, label: 'Email' },
+];
+---
+
+<BaseLayout>
+  <section>
+    <p class="text-sm uppercase tracking-[0.18em] text-muted">Engineering · Machine learning</p>
+    <h1 class="mt-3 font-display text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">
+      Dominic Harrington
+    </h1>
+    <p class="mt-5 text-lg leading-relaxed text-muted">
+      Final-year MEng at the University of Cambridge, specialising in artificial intelligence.
+    </p>
+    <p class="mt-6">
+      I like pointing machine learning at physical problems — cutting the error of downforce
+      simulations at the Williams F1 team, placing sensors for fusion experiments at the UK Atomic
+      Energy Authority, and segmenting MRI scans for my master&rsquo;s thesis. This site holds my
+      CV, selected projects, and occasional notes.
+    </p>
+    <div class="mt-9 flex flex-wrap items-baseline gap-x-6 gap-y-3">
+      <a
+        href="/cv/"
+        class="font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
+      >
+        Read my CV →
+      </a>
+      <a href="/projects/" class="font-medium transition-colors hover:text-accent">Projects</a>
+      <a href="/blog/" class="font-medium transition-colors hover:text-accent">Blog</a>
+      <span aria-hidden="true" class="hidden text-rule sm:inline">|</span>
+      {
+        external.map(({ href, label }) => (
+          <a
+            href={href}
+            class="text-sm text-muted transition-colors hover:text-accent"
+            {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-16 border-t border-rule pt-9">
+    <h2 class="text-sm font-medium uppercase tracking-[0.18em] text-muted">Selected work</h2>
+    <div class="divide-y divide-rule">
+      {featured.map((project) => <ProjectCard project={project} />)}
+    </div>
+    <a
+      href="/projects/"
+      class="text-sm font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
+    >
+      All projects →
+    </a>
+  </section>
+</BaseLayout>

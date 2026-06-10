@@ -1,0 +1,34 @@
+---
+title: Building this site
+description: An Astro static site with MDX content collections, Tailwind, and GitHub Pages deployment.
+date: 2026-06-10
+tags: [Astro, web, MDX]
+repo: https://github.com/DomHazza/DomHazza.github.io
+---
+
+import VideoEmbed from '../../components/VideoEmbed.astro';
+
+This site is a static [Astro](https://astro.build) build — no CMS, no database, almost no
+client-side JavaScript. Projects and blog posts are markdown files in a folder; adding one is a
+matter of dropping in a file and pushing to `main`, and GitHub Actions rebuilds and deploys the
+site.
+
+## How it fits together
+
+- **Astro content collections** define typed schemas for projects and posts, so a typo'd
+  frontmatter field fails the build instead of silently rendering wrong.
+- **MDX** lets a writeup embed components. The video below is rendered by a small `VideoEmbed`
+  component that accepts any YouTube or Vimeo URL:
+
+<VideoEmbed url="https://www.youtube.com/watch?v=aqz-KE-bpKQ" title="Placeholder embed — Big Buck Bunny" />
+
+*(A placeholder video, courtesy of the Blender Foundation — swap in something real.)*
+
+- **Tailwind** handles styling, with the palette and fonts defined as design tokens in one CSS
+  file.
+
+## Why static
+
+A personal site should outlive any framework fashion cycle. Markdown files in a git repo are
+about as future-proof as content storage gets — and a static build means the hosting is free,
+fast, and unhackable in any interesting way.

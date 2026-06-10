@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { LINKS } from '../consts';
+
+const education = [
+  {
+    org: 'University of Cambridge, St John’s College',
+    detail: 'MEng Engineering, specialising in artificial intelligence',
+    dates: '2022–2026',
+    points: [
+      'First Class in every year. Townsend Scholarship and Wright Prize for exceptional exam performance.',
+      'Ranked top 3 in the 2025 Cambridge Engineering Extra-Curricular Awards.',
+      'Elected to the CAISH AI safety fellowship in 2024.',
+      'Master’s thesis: using deep learning to segment MRI scans, supervised by Professor Matthew Juniper.',
+    ],
+  },
+  {
+    org: 'Magdalen College School, Oxford',
+    detail: 'Academic scholarship · school prefect',
+    dates: '2011–2022',
+    points: [
+      '5 A*s at A-level: Maths, Further Maths, Physics, Chemistry and Computer Science.',
+      'Top 50 in the world for AQA Computer Science A-level. Straight 9s at GCSE.',
+    ],
+  },
+];
+
+const experience = [
+  {
+    org: 'Nagoya University',
+    role: 'Exchange student',
+    dates: 'July 2025',
+    stack: null,
+    points: [
+      'Presented research on AI applications in nuclear fusion to the chairman and directors of Tokai Tokyo Financial Holdings.',
+    ],
+  },
+  {
+    org: 'Williams F1',
+    role: 'Machine learning intern',
+    dates: 'July–September 2024 & 2025',
+    stack: 'MATLAB · Python · PyTorch · mlflow — HPC, CUDA, LLMs, computer vision, graph ML, Bayesian inference',
+    points: [
+      'Reduced the error of the team’s downforce simulations by 30% by building a bespoke machine-learning algorithm.',
+      'Built an AI system combining LLMs and computer vision that read historic wind-tunnel reports to match CFD simulations to the corresponding wind-tunnel run.',
+    ],
+  },
+  {
+    org: 'UK Atomic Energy Authority',
+    role: 'Machine learning intern',
+    dates: 'June–September 2023',
+    stack: 'Python · PyTorch · MOOSE · ParaView — HPC, FEM, digital twins, 3D visualisation, optimisation',
+    points: [
+      'Built a machine-learning algorithm that found the best places to put sensors in experiments, improving the effectiveness of previously planned experiments by over 20%.',
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: 'Aerofoil optimisation',
+    href: '/projects/aerofoil-optimisation/',
+    dates: '2025',
+    points: [
+      'Built a CFD solver to simulate the flow around an aerofoil, then compared optimisation strategies — Bayesian optimisation, particle swarm, adjoint-accelerated gradient descent — against metrics such as lift-to-drag ratio.',
+    ],
+  },
+  {
+    title: 'Telegraph Fantasy Funds',
+    href: null,
+    dates: '2021',
+    points: [
+      'Finished 11th of 6,000 competitors by training a deep-learning classification model to invest. The portfolio rose over 15% while the FTSE 350 fell 3%.',
+    ],
+  },
+  {
+    title: 'SkiCross',
+    href: null,
+    dates: '2020',
+    points: [
+      'Self-taught C# to build a Unity mobile game raising money for a school in Uganda; reached 14th on the App Store’s trending list for paid sports games.',
+    ],
+  },
+];
+
+const skills = [
+  { label: 'Languages', items: 'Python, MATLAB, C#' },
+  {
+    label: 'ML & data',
+    items: 'PyTorch, TensorFlow, mlflow, deep learning, computer vision, LLMs, graph machine learning, Bayesian inference',
+  },
+  {
+    label: 'Scientific computing',
+    items: 'CFD, FEM, HPC & CUDA, optimisation & adjoint methods, MOOSE, ParaView',
+  },
+  { label: 'Tools', items: 'Unity, Krita, web scraping, digital twins, 3D visualisation' },
+];
+
+const interests = [
+  { label: 'Running', detail: 'St John’s College athletics captain 2024/25 — won Cuppers; 2nd in Cambridge in the 400m.' },
+  { label: 'Hockey', detail: 'St John’s College top goal scorer 2023/24.' },
+  { label: 'Sailing', detail: 'UK nationals 2019, sailing RS Fevas.' },
+  { label: 'Volunteering', detail: 'Run the OMV Cambridge soup kitchen every fortnight; volunteered in a Lourdes hospital in 2022.' },
+  { label: 'Public speaking', detail: 'St John’s College Engineering Society president 2023/24.' },
+];
+---
+
+<BaseLayout
+  title="CV"
+  description="CV of Dominic Harrington — MEng Engineering at the University of Cambridge, machine-learning internships at Williams F1 and UKAEA."
+>
+  <div class="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
+    <div>
+      <h1 class="font-display text-4xl font-semibold tracking-tight">Curriculum vitae</h1>
+      <p class="mt-3 text-sm text-muted">
+        <a href={`mailto:${LINKS.email}`} class="transition-colors hover:text-accent">{LINKS.email}</a>
+        &nbsp;·&nbsp;
+        <a href={LINKS.github} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-accent">
+          github.com/DomHazza
+        </a>
+        &nbsp;·&nbsp; Oxford & Cambridge, UK
+      </p>
+    </div>
+    <a
+      href="/cv.pdf"
+      class="inline-flex items-center gap-2 rounded-[3px] bg-accent px-4 py-2.5 text-sm font-medium text-paper transition-opacity hover:opacity-90"
+    >
+      Download PDF
+      <span aria-hidden="true">↓</span>
+    </a>
+  </div>
+
+  <section class="mt-12 border-t border-rule pt-8">
+    <h2 class="font-display text-2xl font-semibold tracking-tight">Education</h2>
+    <div class="divide-y divide-rule/70">
+      {
+        education.map((entry) => (
+          <article class="py-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 class="font-body text-[1.0625rem] font-semibold">{entry.org}</h3>
+              <span class="text-sm text-muted">{entry.dates}</span>
+            </div>
+            <p class="mt-1 text-[0.9375rem] text-muted">{entry.detail}</p>
+            <ul class="mt-2.5 space-y-1.5 text-[0.9375rem] leading-relaxed">
+              {entry.points.map((point) => (
+                <li class="relative pl-4 before:absolute before:left-0 before:text-muted before:content-['–']">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-10 border-t border-rule pt-8">
+    <h2 class="font-display text-2xl font-semibold tracking-tight">Experience</h2>
+    <div class="divide-y divide-rule/70">
+      {
+        experience.map((job) => (
+          <article class="py-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 class="font-body text-[1.0625rem] font-semibold">
+                {job.org} <span class="font-normal text-muted">· {job.role}</span>
+              </h3>
+              <span class="text-sm text-muted">{job.dates}</span>
+            </div>
+            {job.stack && <p class="mt-1.5 text-[0.8125rem] italic text-muted/85">{job.stack}</p>}
+            <ul class="mt-2.5 space-y-1.5 text-[0.9375rem] leading-relaxed">
+              {job.points.map((point) => (
+                <li class="relative pl-4 before:absolute before:left-0 before:text-muted before:content-['–']">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-10 border-t border-rule pt-8">
+    <h2 class="font-display text-2xl font-semibold tracking-tight">Projects</h2>
+    <div class="divide-y divide-rule/70">
+      {
+        projects.map((project) => (
+          <article class="py-6">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+              <h3 class="font-body text-[1.0625rem] font-semibold">
+                {project.href ? (
+                  <a href={project.href} class="transition-colors hover:text-accent">
+                    {project.title} →
+                  </a>
+                ) : (
+                  project.title
+                )}
+              </h3>
+              <span class="text-sm text-muted">{project.dates}</span>
+            </div>
+            <ul class="mt-2.5 space-y-1.5 text-[0.9375rem] leading-relaxed">
+              {project.points.map((point) => (
+                <li class="relative pl-4 before:absolute before:left-0 before:text-muted before:content-['–']">
+                  {point}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-10 border-t border-rule pt-8">
+    <h2 class="font-display text-2xl font-semibold tracking-tight">Skills</h2>
+    <dl class="mt-5 space-y-3 text-[0.9375rem] leading-relaxed">
+      {
+        skills.map(({ label, items }) => (
+          <div class="grid gap-x-6 sm:grid-cols-[170px_1fr]">
+            <dt class="font-medium text-muted">{label}</dt>
+            <dd>{items}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="mt-10 border-t border-rule pt-8">
+    <h2 class="font-display text-2xl font-semibold tracking-tight">Interests</h2>
+    <dl class="mt-5 space-y-3 text-[0.9375rem] leading-relaxed">
+      {
+        interests.map(({ label, detail }) => (
+          <div class="grid gap-x-6 sm:grid-cols-[170px_1fr]">
+            <dt class="font-medium text-muted">{label}</dt>
+            <dd>{detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</BaseLayout>

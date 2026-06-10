@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../utils/content';
+
+const projects = await getProjects();
+// Featured entries float to the top; each group stays in date order.
+const ordered = [...projects].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected technical and creative projects — machine learning, simulation, and the occasional game."
+>
+  <h1 class="font-display text-4xl font-semibold tracking-tight">Projects</h1>
+  <p class="mt-4 leading-relaxed text-muted">
+    Selected technical work — machine learning, simulation, and the occasional game. Writeups link
+    to code where it exists.
+  </p>
+  <div class="mt-8 divide-y divide-rule border-t border-rule">
+    {ordered.map((project) => <ProjectCard project={project} />)}
+  </div>
+</BaseLayout>
