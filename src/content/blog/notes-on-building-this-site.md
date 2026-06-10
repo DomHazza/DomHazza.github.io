@@ -3,7 +3,6 @@ title: Notes on building this site
 description: What's under the hood — and how adding a post is just dropping a markdown file in a folder.
 date: 2026-06-10
 tags: [meta, web]
-relatedProject: building-this-site
 ---
 
 This is the first post — partly a hello, partly living documentation for future me.
@@ -23,9 +22,8 @@ draft: true
 
 A post marked `draft: true` shows up locally but is excluded from the deployed site, so
 half-written things can sit in the repo safely. Posts can also point at a project with
-`relatedProject: <project-id>` — this post does exactly that, which is why a link to the project
-writeup appears below. The link goes both ways: the project page lists this post under
-"related writing".
+`relatedProject: <project-id>` — the post then shows a link to the project, and the project page
+lists the post under "related writing".
 
 Posts can embed images, code blocks, and — by renaming the file from `.md` to `.mdx` — components
 like video embeds. That's the whole workflow: write a file, commit, push.
