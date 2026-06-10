@@ -1,7 +1,7 @@
 export const SITE_TITLE = 'Dominic Harrington';
 export const SITE_TAGLINE = 'Engineering & machine learning';
 export const SITE_DESCRIPTION =
-  'Dominic Harrington — final-year MEng at the University of Cambridge, specialising in artificial intelligence. CV, projects, and notes on machine learning for physical systems.';
+  'Dominic Harrington — final-year MEng at the University of Cambridge, specialising in artificial intelligence. CV and selected projects.';
 
 export const LINKS = {
   github: 'https://github.com/DomHazza',

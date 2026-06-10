@@ -4,8 +4,6 @@ import { SITE_TITLE } from '../consts';
 const nav: { href: string; label: string; newTab?: boolean }[] = [
   { href: '/cv.pdf', label: 'CV', newTab: true },
   { href: '/projects/', label: 'Projects' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/about/', label: 'About' },
 ];
 
 const current = Astro.url.pathname.replace(/\/+$/, '') || '/';

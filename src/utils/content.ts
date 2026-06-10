@@ -8,11 +8,6 @@ export async function getProjects(): Promise<CollectionEntry<'projects'>[]> {
   return projects.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 }
 
-export async function getPosts(): Promise<CollectionEntry<'blog'>[]> {
-  const posts = await getCollection('blog', ({ data }) => showDrafts || !data.draft);
-  return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-}
-
 export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-GB', {
     day: 'numeric',

@@ -1,6 +1,6 @@
 # domhazza.github.io
 
-Personal portfolio + blog. Static [Astro](https://astro.build) site styled with Tailwind CSS,
+Personal portfolio. Static [Astro](https://astro.build) site styled with Tailwind CSS,
 content driven by markdown/MDX files, deployed to GitHub Pages by GitHub Actions.
 
 ## Running locally
@@ -36,22 +36,7 @@ Writeup in markdown below the frontmatter.
 
 The page appears at `/projects/my-project/` (slug = filename).
 
-## Adding a blog post
-
-Same idea in `src/content/blog/`:
-
-```yaml
----
-title: A new post
-description: One line for the blog index.
-date: 2026-07-01
-tags: [engineering]
-relatedProject: my-project   # optional — links post and project both ways
-draft: true                  # optional
----
-```
-
-To embed video or components in a post, rename it `.mdx` and import the component:
+To embed video or components in a writeup, name the file `.mdx` and import the component:
 
 ```mdx
 import VideoEmbed from '../../components/VideoEmbed.astro';
