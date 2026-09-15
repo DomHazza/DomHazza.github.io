@@ -1,6 +1,6 @@
 ---
 title: Deep learning trading
-description: An experiment applying deep learning to algorithmic trading in Python.
+description: Deep learning classification model which finished 11th from 6000 different competitors in the Telegraph Fantasy Funds competition.
 date: 2021-06-01
 tags: [Python, TensorFlow, algorithmic trading]
 ---
