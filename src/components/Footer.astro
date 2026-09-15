@@ -3,9 +3,7 @@ import { LINKS, SITE_TITLE } from '../consts';
 
 const year = new Date().getFullYear();
 const links = [
-  { href: LINKS.github, label: 'GitHub' },
   { href: LINKS.linkedin, label: 'LinkedIn' },
-  { href: `mailto:${LINKS.email}`, label: 'Email' },
 ].filter(({ href }) => href && href !== 'mailto:');
 ---
 
