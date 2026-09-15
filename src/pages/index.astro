@@ -8,15 +8,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Dominic Harrington
     </h1>
     <p class="mt-5 text-lg leading-relaxed text-muted">
-      Internships at Jane Street, F1 and Nuclear Fusion. University of Cambridge MEng, specialised
-      in artificial intelligence.
+      Internships at Jane Street, F1 and Nuclear Fusion.<br />
+      University of Cambridge MEng, specialised in artificial intelligence.
     </p>
     <p class="mt-6">
       I am most interested in using data to solve messy, real-world problems. This includes tracking
       financial penalty payments at Jane Street, segmenting MRI scans for my master&rsquo;s thesis,
-      identifying the optimal sensor locations at the UK Atomic Energy Authority, and cutting the
+      identifying the optimal sensor locations for experiments at the UK Atomic Energy Authority, and
+      cutting the
       error of downforce simulations at the Williams F1 team.
     </p>
+    <ul class="mt-6 flex flex-col gap-2 text-[0.9375rem]">
+      <li>
+        <a
+          href="/projects/bayesian-mri/"
+          class="font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
+        >
+          Bayesian inference for MRI segmentation →
+        </a>
+      </li>
+      <li>
+        <a
+          href="/projects/aerofoil-optimisation/"
+          class="font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
+        >
+          Aerofoil optimisation with adjoint methods →
+        </a>
+      </li>
+    </ul>
     <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
       <img
         src="/IMG_1497.jpg"
