@@ -5,11 +5,8 @@ date: 2021-06-01
 tags: [Python, TensorFlow, algorithmic trading]
 ---
 
-## Overview
-
-An experiment applying deep learning to algorithmic trading, built in Python
-with TensorFlow.
-
----
-
-*Full write-up in progress.*
+<img
+  src="/Pretty%20solid.png"
+  alt="Telegraph Fantasy Funds portfolio performance and leaderboard ranking"
+  class="w-full rounded-[4px] border border-rule"
+/>
