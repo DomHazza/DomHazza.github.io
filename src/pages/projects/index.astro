@@ -4,8 +4,11 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getProjects } from '../../utils/content';
 
 const projects = await getProjects();
+// The adjoint aerofoil write-up is still in progress, so keep it off this index.
+// The page stays reachable via its direct link elsewhere.
+const listed = projects.filter((project) => project.id !== 'aerofoil-optimisation');
 // Featured entries float to the top; each group stays in date order.
-const ordered = [...projects].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const ordered = [...listed].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
 ---
 
 <BaseLayout
