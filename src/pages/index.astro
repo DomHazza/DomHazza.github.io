@@ -1,19 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { LINKS } from '../consts';
-import { getProjects } from '../utils/content';
-
-const projects = await getProjects();
-const featured = [...projects]
-  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured))
-  .slice(0, 2);
-
-const external = [
-  { href: LINKS.github, label: 'GitHub ↗' },
-  ...(LINKS.linkedin ? [{ href: LINKS.linkedin, label: 'LinkedIn ↗' }] : []),
-  { href: `mailto:${LINKS.email}`, label: 'Email' },
-];
 ---
 
 <BaseLayout>
@@ -27,44 +13,7 @@ const external = [
     <p class="mt-6">
       I like pointing machine learning at physical problems — cutting the error of downforce
       simulations at the Williams F1 team, placing sensors for fusion experiments at the UK Atomic
-      Energy Authority, and segmenting MRI scans for my master&rsquo;s thesis. This site holds my
-      CV and selected projects.
+      Energy Authority, and segmenting MRI scans for my master&rsquo;s thesis.
     </p>
-    <div class="mt-9 flex flex-wrap items-baseline gap-x-6 gap-y-3">
-      <a
-        href="/cv.pdf"
-        target="_blank"
-        rel="noopener"
-        class="font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
-      >
-        Read my CV (PDF) →
-      </a>
-      <a href="/projects/" class="font-medium transition-colors hover:text-accent">Projects</a>
-      <span aria-hidden="true" class="hidden text-rule sm:inline">|</span>
-      {
-        external.map(({ href, label }) => (
-          <a
-            href={href}
-            class="text-sm text-muted transition-colors hover:text-accent"
-            {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          >
-            {label}
-          </a>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="mt-16 border-t border-rule pt-9">
-    <h2 class="text-sm font-medium uppercase tracking-[0.18em] text-muted">Selected work</h2>
-    <div class="divide-y divide-rule">
-      {featured.map((project) => <ProjectCard project={project} />)}
-    </div>
-    <a
-      href="/projects/"
-      class="text-sm font-medium text-accent underline decoration-accent/40 decoration-1 underline-offset-4 transition-colors hover:decoration-accent"
-    >
-      All projects →
-    </a>
   </section>
 </BaseLayout>
