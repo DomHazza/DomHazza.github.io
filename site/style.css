@@ -1,0 +1,215 @@
+/* Palette and type are lifted from the showreel's HUD so the overlay reads as
+   part of the animation rather than something laid on top of it. */
+:root {
+  color-scheme: dark;
+  --bg: #0b1115;
+  --ink: #e8ecee;
+  --muted: #7d8a91;
+  --rule: rgba(232, 236, 238, 0.28);
+  --teal: #4fd1c0;
+  --hot: #ff5a3c;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --gutter: clamp(20px, 4.6vw, 88px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 1px solid var(--teal);
+  outline-offset: 3px;
+}
+
+/* ---------- Home ---------- */
+
+.reel {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--bg) url('media/showreel-poster.jpg') center / cover no-repeat;
+}
+
+.overlay {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: max(13vh, calc(env(safe-area-inset-bottom, 0px) + 96px));
+  max-width: 40rem;
+}
+
+.name {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.tagline {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.6rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.7em 1.1em;
+  border: 1px solid var(--rule);
+  background: rgba(11, 17, 21, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.btn .idx {
+  color: var(--teal);
+  transition: color 160ms ease;
+}
+
+.btn:hover {
+  border-color: var(--hot);
+}
+
+.btn:hover .idx {
+  color: var(--hot);
+}
+
+.reel-toggle {
+  position: fixed;
+  right: var(--gutter);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 20px);
+  padding: 0.4em 0.7em;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.reel-toggle:hover {
+  color: var(--ink);
+}
+
+/* On narrow screens the reel is cropped hard by object-fit: cover, so give the
+   text a scrim to sit on. */
+@media (max-width: 720px) {
+  body.home::after {
+    content: '';
+    position: fixed;
+    inset: auto 0 0 0;
+    height: 65vh;
+    background: linear-gradient(to top, rgba(11, 17, 21, 0.92), transparent);
+    pointer-events: none;
+  }
+
+  .overlay {
+    z-index: 1;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 72px);
+  }
+
+  .reel-toggle {
+    z-index: 1;
+  }
+}
+
+/* ---------- Inner pages ---------- */
+
+.page {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: calc(env(safe-area-inset-top, 0px) + 28px) var(--gutter)
+    calc(env(safe-area-inset-bottom, 0px) + 28px);
+}
+
+.page-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.page-body {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding-block: 2rem;
+}
+
+.player {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  border: 1px solid var(--rule);
+  background: #000;
+}
+
+.caption {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  max-width: 46rem;
+}
+
+.lost {
+  text-align: center;
+}
+
+.lost p {
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Dominic Harrington</title>
+    <meta
+      name="description"
+      content="Dominic Harrington — Cambridge MEng specialising in AI. Thesis, CV and projects."
+    />
+    <meta name="theme-color" content="#0b1115" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="home">
+    <video
+      class="reel"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="media/showreel-poster.jpg"
+      aria-hidden="true"
+    >
+      <source src="media/showreel.webm" type="video/webm" />
+      <source src="media/showreel.mp4" type="video/mp4" />
+    </video>
+
+    <main class="overlay">
+      <h1 class="name">Dominic Harrington</h1>
+      <p class="tagline">Cambridge MEng · AI &amp; engineering · Jane Street, Williams F1, UKAEA</p>
+      <nav class="actions" aria-label="Main">
+        <a class="btn" href="thesis.pdf" target="_blank" rel="noopener"><span class="idx">01</span>Thesis</a>
+        <a class="btn" href="cv.pdf" target="_blank" rel="noopener"><span class="idx">02</span>CV</a>
+        <a class="btn" href="skicross.html"><span class="idx">03</span>Skiing game</a>
+      </nav>
+    </main>
+
+    <button class="reel-toggle" type="button" aria-pressed="false">Pause</button>
+
+    <script>
+      const reel = document.querySelector('.reel');
+      const toggle = document.querySelector('.reel-toggle');
+
+      function sync() {
+        toggle.textContent = reel.paused ? 'Play' : 'Pause';
+        toggle.setAttribute('aria-pressed', String(reel.paused));
+      }
+
+      toggle.addEventListener('click', () => (reel.paused ? reel.play() : reel.pause()));
+      reel.addEventListener('play', sync);
+      reel.addEventListener('pause', sync);
+
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) reel.pause();
+      sync();
+    </script>
+  </body>
+</html>
