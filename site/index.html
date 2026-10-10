@@ -14,26 +14,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,ital,wght@14..32,0,500;14..32,0,900;14..32,1,500&family=JetBrains+Mono:wght@400;500&display=swap"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body class="home">
-    <video
-      class="reel"
-      autoplay
-      muted
-      loop
-      playsinline
-      poster="media/loop-poster.jpg"
-      aria-hidden="true"
-    >
-      <source src="media/loop.mp4" type="video/mp4" />
-    </video>
+    <canvas class="reel" width="1920" height="1080" aria-hidden="true"></canvas>
 
     <main class="overlay">
       <h1 class="name">Dominic Harrington</h1>
-      <p class="tagline">Cambridge MEng · AI &amp; engineering · Jane Street, Williams F1, UKAEA</p>
+      <p class="tagline"><span>Cambridge MEng · AI &amp; engineering ·</span> <span>Jane Street, Williams F1, UKAEA</span></p>
       <nav class="actions" aria-label="Main">
         <a class="btn" href="thesis.pdf" target="_blank" rel="noopener"><span class="idx">01</span>Thesis</a>
         <a class="btn" href="cv.pdf" target="_blank" rel="noopener"><span class="idx">02</span>CV</a>
@@ -43,8 +33,8 @@
 
     <button class="reel-toggle" type="button" aria-pressed="false">Pause</button>
 
+    <script src="loop.js"></script>
     <script>
-      const reel = document.querySelector('.reel');
       const toggle = document.querySelector('.reel-toggle');
 
       function sync() {
@@ -53,10 +43,7 @@
       }
 
       toggle.addEventListener('click', () => (reel.paused ? reel.play() : reel.pause()));
-      reel.addEventListener('play', sync);
-      reel.addEventListener('pause', sync);
-
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) reel.pause();
+      reel.onchange = sync;
       sync();
     </script>
   </body>

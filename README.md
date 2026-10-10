@@ -13,7 +13,8 @@ site/
   favicon.svg
   cv.pdf
   thesis.pdf
-  media/          loop.mp4 + loop-poster.jpg (home), skicross.mp4
+  loop.js         live home-page animation (adapted from ../loop.html)
+  media/          loop-poster.jpg (shown until loop.js draws), skicross.mp4
 ```
 
 Preview locally with `python3 -m http.server -d site` and open http://localhost:8000.
